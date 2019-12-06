@@ -19,6 +19,8 @@ ph.conv.indeed.com. CNAME eastasian.dyn.indeed.com.
 # Usage:
 ** Make sure you change the DOMAIN variable in `docker run`**
 ```
+git clone git@github.com:godzilla74/pentest-tools.git
+cd pentest-tools
 docker build -t recon .
 docker run -it -v $(pwd):/opt/results -e DOMAIN=example.com recon
 ```
