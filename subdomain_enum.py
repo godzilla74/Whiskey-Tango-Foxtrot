@@ -25,22 +25,23 @@ def make_dir():
 
 # Commonspeak generation
 def run_commonspeak():
+    # We're just going to add the commonspeak generated domains directly to domains_list
+    # since this is the first thing that runs
     print("[+] Starting Commonspeak subdomain generation.")
-    # holder for domains
-    domains = []
     # start commonspeak gen
     wordlist = open('/opt/tools/commonspeak2-wordlists/subdomains/subdomains.txt').read().split('\n')
     for word in wordlist:
         if not word.strip():
             continue
         d = '{}.{}'.format(word.strip(), domain)
-        domains.append(d)
-    print("[+] Commonspeak created {} subdomain possibilities.".format(len(domains)))
+        domain_list.append(d)
+    print("[+] Commonspeak created {} subdomain possibilities.".format(len(domain_list)))
     outfile = open("{}/commonspeak.out".format(outdir),"w+")
-    for d in domains:
+    for d in domain_list:
         outfile.write("{}\n".format(d))
     print("[*] Done!  Results saved to {}/commonspeak.out".format(outdir))
-    merge_file("{}/commonspeak.out".format(outdir))
+
+    #merge_file("{}/commonspeak.out".format(outdir))
 
 
 # Rapid7 forward DNS
@@ -75,6 +76,14 @@ def run_amass():
     merge_file("{}/amass.out".format(outdir))
     print("[*] Done!  Results saved to {}/amass.out".format(outdir))
 
+# runs assetfinder
+def run_assetfinder():
+    print("[+] Starting assetfinder.")
+    cmd_string = "/opt/go/bin/assetfinder --subs-only {} > {}/assetfinder.out".format(domain, outdir)
+    p = Popen(cmd_string, stdout=DEVNULL, shell=True)
+    p.wait()
+    merge_file("{}/assetfinder.out".format(outdir))
+    print("[*] Done!  Results saved to {}/assetfinder.out".format(outdir))
 
 # merge files
 def merge_file(file1):
@@ -143,6 +152,7 @@ make_dir()
 #run_bass()
 run_commonspeak()
 run_amass()
+run_assetfinder()
 write_domains()
 run_massdns()
 clean_massdns("{}/massdns.tmp".format(outdir))

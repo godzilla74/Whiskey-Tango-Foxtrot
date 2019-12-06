@@ -26,10 +26,10 @@ docker run -it -v $(pwd):/opt/results -e DOMAIN=example.com recon
 ```
 
 # Todo
-- [ ]  dockerize
+- [x]  dockerize
 - [ ]  masscan the resulting IPs  
 - [ ]  add user mount for wordlists
 - [ ]  ffuf the domains - directory brute force    
-- [ ]  add assetfinder to the mix
+- [x]  add assetfinder to the mix
 - [ ]  add meg
 - [ ]  add aquatone
