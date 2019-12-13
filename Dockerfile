@@ -9,9 +9,9 @@ ENV DOMAIN=""
 RUN apt-get update && \
   apt-get -y install git build-essential zlib1g-dev libncurses5-dev libgdbm-dev \
   libnss3-dev libssl-dev libreadline-dev libffi-dev wget python3 python3-pip \
-  git gcc make libpcap-dev chromium unzip && \
+  git gcc make libpcap-dev chromium unzip jq parallel && \
   rm -rf /var/lib/apt/lists/* && \
-  mkdir -p /opt/tools /opt/scripts /opt/results \
+  mkdir -p /opt/tools /opt/scripts /opt/results /opt/wordlists \
   "$GOPATH/src" "$GOPATH/bin" "$GOPATH/pkg" && \
   cd /opt && wget -O go1.13.5.tar.gz https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz && \
   tar -C /usr/local -xzf go1.13.5.tar.gz && \
@@ -37,7 +37,10 @@ RUN apt-get update && \
 
 WORKDIR /opt/scripts
 COPY . .
-RUN chmod +x /opt/scripts/subdomain_enum.sh
+
+RUN chmod +x /opt/scripts/subdomain_enum.sh && \
+  mv wordlists/raft-all.txt /opt/wordlists/raft-all.txt && \
+  mv wordlists/dicc.txt /opt/wordlists/dicc.txt
 
 VOLUME ["/opt/results"]
 
