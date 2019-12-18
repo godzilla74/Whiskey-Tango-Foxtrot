@@ -43,7 +43,7 @@ make_dir() {
 
 commonspeak() {
   echo "[+] Generating commonspeak wordlist with domain"
-  cat /opt/wordlists/commonspeak2-wordlists/subdomains/subdomains.txt | sed "s/$/\.$DOMAIN/" | tee -a $BASE_DIR/commonspeak.out
+  cat /opt/tools/commonspeak2-wordlists/subdomains/subdomains.txt | sed "s/$/\.$DOMAIN/" | tee -a $BASE_DIR/commonspeak.out
   echo "[+] Commonspeak complete!"
 }
 
