@@ -35,7 +35,7 @@ else
   WORDLIST="/opt/wordlists/dicc.txt"
 fi
 
-BASE_DIR=$DOMAIN
+BASE_DIR=/opt/results/$DOMAIN
 
 make_dir() {
   mkdir -p $BASE_DIR
