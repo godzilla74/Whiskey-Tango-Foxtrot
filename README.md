@@ -48,6 +48,7 @@ docker run -it -v $(pwd):/opt/results recon <domain> <resolver_check> <wordlist_
 - [x]  add httprobe
 - [ ]  massdns CNAME results into their own file (for subdomain takeover?)
 - [ ]  add `parallel` support to run some jobs in tandem (masscan, httprobe, aquatone)
+- [ ]  get ASNs and IP ranges for better masscan results
 
 ## Problems or Suggestions:
-Have a problem or suggestion?  [Make an issue](https://github.com/godzilla74/pentest-tools/issues).  I might get to it:
+Have a problem or suggestion?  [Make an issue](https://github.com/godzilla74/pentest-tools/issues).  I might get to it.
