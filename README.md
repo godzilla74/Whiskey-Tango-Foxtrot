@@ -1,5 +1,5 @@
-# pentest-tools
-Automated framework to do stuff
+# Whiskey-Tango-Foxtrot
+Automated framework to do big bounty recon
 
 ## What happens:
 1.  Generates a subdomain wordlist with `commonspeak2-wordlists`
